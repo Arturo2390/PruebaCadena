@@ -65,415 +65,371 @@ public class PruebaCadena {
         String cadenaCCP = "||";
         int fctClef = 1;
         ComplementoCartaPorteDao complementoCartaPorteDao = new ComplementoCartaPorteDao();
-        CartaPorteVO cpVO = complementoCartaPorteDao.consultaCartaPorte(fctClef);
-        UbicacionesVO ubsVO = complementoCartaPorteDao.consultaUbicaciones(fctClef);
-        ContenedorVO ctVO = complementoCartaPorteDao.consultaContenedor(fctClef);
-        MercanciasVO mrsVO = complementoCartaPorteDao.consultaMercancias(fctClef);
-        MercanciaVO mrVO = complementoCartaPorteDao.consultaMercancia(fctClef);
-        GuiasIdentificacionVO giVO = complementoCartaPorteDao.consultaGuiasIdentificacion(fctClef);
-        CantidadTransportaVO ctrVO = complementoCartaPorteDao.consultaCantidadTransporta(fctClef);
-        DetalleMercanciaVO demVO = complementoCartaPorteDao.consultaDetalleMercancia(fctClef);
-        IdentificacionVehicularVO ivVO = complementoCartaPorteDao.consultaIdentificacionVehicular(fctClef);
-        SegurosVO sgVO = complementoCartaPorteDao.consultaSeguros(fctClef);
-        RemolquesVO rmsVO = complementoCartaPorteDao.consultaRemolques(fctClef);
-        TransporteMaritimoVO tmVO = complementoCartaPorteDao.consultaTransporteMaritimo(fctClef);
-        TransporteAereoVO taVO = complementoCartaPorteDao.consultaTransporteAereo(fctClef);
-        TransporteFerroviarioVO tfvVO = complementoCartaPorteDao.consultaTransporteFerroviario(fctClef);
-        DerechosDePasoVO ddpVO = complementoCartaPorteDao.consultaDerechosDePaso(fctClef);
-        CarroVO crVO = complementoCartaPorteDao.consultaCarro(fctClef);
-        TiposFiguraVO tfVO = complementoCartaPorteDao.consultaTiposFigura(fctClef);
-        DomicilioVO dmVO = complementoCartaPorteDao.consultaDomicilio(fctClef);
-        AutotransporteVO autVO = complementoCartaPorteDao.consultaAutotransporte(fctClef);
-                
-        cadenaCCP = cadenaCCP + addCadena(cpVO.getVersion());
-        cadenaCCP = cadenaCCP + addCadena(cpVO.getTranspInternac());
-        if (cpVO.getEntradaSalidaMerc() != null && !cpVO.getEntradaSalidaMerc().equals("")){
-            cadenaCCP = cadenaCCP + addCadena(cpVO.getEntradaSalidaMerc());
-        }
-        if (cpVO.getPaisOrigenDestino() != null && !cpVO.getPaisOrigenDestino().equals("")){
-            cadenaCCP = cadenaCCP + addCadena(cpVO.getPaisOrigenDestino());
-        }
-        if (cpVO.getViaEntradaSalida() != null && !cpVO.getViaEntradaSalida().equals("")){
-            cadenaCCP = cadenaCCP + addCadena(cpVO.getViaEntradaSalida());
-        }
-        if (cpVO.getTotalDistRec() != null && !cpVO.getTotalDistRec().equals("")){
-            cadenaCCP = cadenaCCP + addCadena(cpVO.getTotalDistRec().toString());
-        }
-        //if (cpVO.getUbicacionesVO() != null && !cpVO.getUbicacionesVO().equals("")){
-            //if(ubsVO.getUbicacionVO() != null && !ubsVO.getUbicacionVO().equals("")){
-                ArrayList<UbicacionVO> ubVO = complementoCartaPorteDao.consultaUbicacion(fctClef);
-                for(int i=0; i<ubVO.size(); i++){
-                    cadenaCCP = cadenaCCP + addCadena(ubVO.get(i).getTipoUbicacion());
-                    if(ubVO.get(i).getIdUbicacion() != null && !ubVO.get(i).getIdUbicacion().equals("")){
-                        cadenaCCP = cadenaCCP + addCadena(ubVO.get(i).getIdUbicacion());
-                    }
-                    cadenaCCP = cadenaCCP + addCadena(ubVO.get(i).getRfcRemitenteDestinatario());
-                    if(ubVO.get(i).getNombreRemitenteDestinatario() != null && !ubVO.get(i).getNombreRemitenteDestinatario().equals("")){
-                        cadenaCCP = cadenaCCP + addCadena(ubVO.get(i).getNombreRemitenteDestinatario());
-                    }
-                    if(ubVO.get(i).getNumRegIdTrib() != null && !ubVO.get(i).getNumRegIdTrib().equals("")){
-                        cadenaCCP = cadenaCCP + addCadena(ubVO.get(i).getNumRegIdTrib());
-                    }
-                    if(ubVO.get(i).getResidenciaFiscal() != null && !ubVO.get(i).getResidenciaFiscal().equals("")){
-                        cadenaCCP = cadenaCCP + addCadena(ubVO.get(i).getResidenciaFiscal());
-                    }
-                    if(ubVO.get(i).getNumEstacion() != null && !ubVO.get(i).getNumEstacion().equals("")){
-                        cadenaCCP = cadenaCCP + addCadena(ubVO.get(i).getNumEstacion());
-                    }
-                    if(ubVO.get(i).getNombreEstacion() != null && !ubVO.get(i).getNombreEstacion().equals("")){
-                        cadenaCCP = cadenaCCP + addCadena(ubVO.get(i).getNombreEstacion());
-                    }
-                    if(ubVO.get(i).getNavegacionTrafico() != null && !ubVO.get(i).getNavegacionTrafico().equals("")){
-                        cadenaCCP = cadenaCCP + addCadena(ubVO.get(i).getNavegacionTrafico());
-                    }
-                    cadenaCCP = cadenaCCP + addCadena(ubVO.get(i).getFechaHoraSalidaLlegada().toString());
-                    if(ubVO.get(i).getTipoEstacion() != null && !ubVO.get(i).getTipoEstacion().equals("")){
-                        cadenaCCP = cadenaCCP + addCadena(ubVO.get(i).getTipoEstacion());
-                    }
-                    if(ubVO.get(i).getDistanciaRecorrida() != null && !ubVO.get(i).getDistanciaRecorrida().equals("")){
-                        cadenaCCP = cadenaCCP + addCadena(ubVO.get(i).getDistanciaRecorrida());
-                    }
-                }
-//                cadenaCCP = cadenaCCP + addCadena(ubVO.get(0).toString());
-//                if(ubVO.get(1).toString() != null && !ubVO.get(1).toString().equals("")){
-//                    cadenaCCP = cadenaCCP + addCadena(ubVO.get(1).toString());
-//                }
-//                cadenaCCP = cadenaCCP + addCadena(ubVO.get(2).toString());
-//                if(ubVO.get(3).toString() != null && !ubVO.get(3).toString().equals("")){
-//                    cadenaCCP = cadenaCCP + addCadena(ubVO.get(3).toString());
-//                }
-//                if(ubVO.get(4).toString() != null && !ubVO.get(4).toString().equals("")){
-//                    cadenaCCP = cadenaCCP + addCadena(ubVO.get(4).toString());
-//                }
-//                if(ubVO.get(5).toString() != null && !ubVO.get(5).toString().equals("")){
-//                    cadenaCCP = cadenaCCP + addCadena(ubVO.get(5).toString());
-//                }
-//                if(ubVO.get(6).toString() != null && !ubVO.get(6).toString().equals("")){
-//                    cadenaCCP = cadenaCCP + addCadena(ubVO.get(6).toString());
-//                }
-//                if(ubVO.get(7).toString() != null && !ubVO.get(7).toString().equals("")){
-//                    cadenaCCP = cadenaCCP + addCadena(ubVO.get(7).toString());
-//                }
-//                if(ubVO.get(8).toString() != null && !ubVO.get(8).toString().equals("")){
-//                    cadenaCCP = cadenaCCP + addCadena(ubVO.get(8).toString());
-//                }
-//                cadenaCCP = cadenaCCP + addCadena(ubVO.get(9).toString());
-//                if(ubVO.get(10).toString() != null && !ubVO.get(10).toString().equals("")){
-//                    cadenaCCP = cadenaCCP + addCadena(ubVO.get(3).toString());
-//                }
-//                if(ubVO.get(11).toString() != null && !ubVO.get(11).toString().equals("")){
-//                    cadenaCCP = cadenaCCP + addCadena(ubVO.get(11).toString());
-//                }
-//                if(ubVO.get(12).toString() != null && !ubVO.get(12).toString().equals("")){
-//                    if(dmVO.getCalle() != null && !dmVO.getCalle().equals("")){
-//                        cadenaCCP = cadenaCCP + addCadena(dmVO.getCalle());
-//                    }
-//                    if(dmVO.getNumeroExterior() != null && !dmVO.getNumeroExterior().equals("")){
-//                        cadenaCCP = cadenaCCP + addCadena(dmVO.getNumeroExterior());
-//                    }
-//                    if(dmVO.getNumeroInterior() != null && !dmVO.getNumeroInterior().equals("")){
-//                        cadenaCCP = cadenaCCP + addCadena(dmVO.getNumeroInterior());
-//                    }
-//                    if(dmVO.getColonia() != null && !dmVO.getColonia().equals("")){
-//                        cadenaCCP = cadenaCCP + addCadena(dmVO.getColonia());
-//                    }
-//                    if(dmVO.getLocalidad() != null && !dmVO.getLocalidad().equals("")){
-//                        cadenaCCP = cadenaCCP + addCadena(dmVO.getLocalidad());
-//                    }
-//                    if(dmVO.getReferencia() != null && !dmVO.getReferencia().equals("")){
-//                        cadenaCCP = cadenaCCP + addCadena(dmVO.getReferencia());
-//                    }
-//                    if(dmVO.getMunicipio() != null && !dmVO.getMunicipio().equals("")){
-//                        cadenaCCP = cadenaCCP + addCadena(dmVO.getMunicipio());
-//                    }
-//                    cadenaCCP = cadenaCCP + addCadena(dmVO.getEstado());
-//                    cadenaCCP = cadenaCCP + addCadena(dmVO.getPais());
-//                    cadenaCCP = cadenaCCP + addCadena(dmVO.getCodigoPostal());
-//                }
-            //}
-        //}
-        //if(cpVO.getMercanciasVO() != null && !cpVO.getMercanciasVO().equals("")){
-            
-            cadenaCCP = cadenaCCP + addCadena(mrsVO.getPesoBrutoTotal().toString());
-            cadenaCCP = cadenaCCP + addCadena(mrsVO.getUnidadPeso().toString());
-            if(mrsVO.getPesoNetoTotal() != null && !mrsVO.getPesoNetoTotal().equals("")){
-                cadenaCCP = cadenaCCP + addCadena(mrsVO.getPesoNetoTotal().toString());
+        CartaPorteVO cartaPorteVO = complementoCartaPorteDao.consultaCartaPorte(fctClef);
+        
+        try {
+            cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getVersion());
+            cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getTranspInternac());
+            if (cartaPorteVO.getEntradaSalidaMerc() != null && !cartaPorteVO.getEntradaSalidaMerc().equals("")){
+                cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getEntradaSalidaMerc());
             }
-            cadenaCCP = cadenaCCP + addCadena(mrsVO.getNumTotalMercancias().toString());
-            if(mrsVO.getCargoPorTasacion() != null && !mrsVO.getCargoPorTasacion().equals("")){
-                cadenaCCP = cadenaCCP + addCadena(mrsVO.getCargoPorTasacion().toString());
+            if (cartaPorteVO.getPaisOrigenDestino() != null && !cartaPorteVO.getPaisOrigenDestino().equals("")){
+                cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getPaisOrigenDestino());
             }
-            if(mrsVO.getMercanciaVO() != null && !mrsVO.getMercanciaVO().equals("")){
-                cadenaCCP = cadenaCCP + addCadena(mrVO.getBienesTransp());
-                if(mrVO.getClaveSTCC() != null && !mrVO.getClaveSTCC().equals("")){
-                    cadenaCCP = cadenaCCP + addCadena(mrVO.getClaveSTCC());                
-                }
-                cadenaCCP = cadenaCCP + addCadena(mrVO.getDescripcion());
-                cadenaCCP = cadenaCCP + addCadena(mrVO.getCantidad().toString());
-                cadenaCCP = cadenaCCP + addCadena(mrVO.getClaveUnidad());
-                if(mrVO.getUnidad() != null && !mrVO.getUnidad().equals("")){
-                    cadenaCCP = cadenaCCP + addCadena(mrVO.getUnidad());
-                }
-                if(mrVO.getDimensiones() != null && !mrVO.getDimensiones().equals("")){
-                    cadenaCCP = cadenaCCP + addCadena(mrVO.getDimensiones());
-                }
-                if(mrVO.getMaterialPeligroso() != null && !mrVO.getMaterialPeligroso().equals("")){
-                    cadenaCCP = cadenaCCP + addCadena(mrVO.getMaterialPeligroso());
-                }
-                if(mrVO.getCveMaterialPeligroso() != null && !mrVO.getCveMaterialPeligroso().equals("")){
-                    cadenaCCP = cadenaCCP + addCadena(mrVO.getCveMaterialPeligroso());
-                }
-                if(mrVO.getEmbalaje() != null && !mrVO.getEmbalaje().equals("")){
-                    cadenaCCP = cadenaCCP + addCadena(mrVO.getEmbalaje());
-                }
-                if(mrVO.getDescripEmbalaje() != null && !mrVO.getDescripEmbalaje().equals("")){
-                    cadenaCCP = cadenaCCP + addCadena(mrVO.getDescripEmbalaje());
-                }
-                cadenaCCP = cadenaCCP + addCadena(mrVO.getPesoEnKg().toString());
-                if(mrVO.getValorMercancia() != null && !mrVO.getValorMercancia().equals("")){
-                    cadenaCCP = cadenaCCP + addCadena(mrVO.getValorMercancia().toString());
-                }
-                if(mrVO.getMoneda() != null && !mrVO.getMoneda().equals("")){
-                    cadenaCCP = cadenaCCP + addCadena(mrVO.getMoneda());
-                }
-                if(mrVO.getFraccionArancelaria() != null && !mrVO.getFraccionArancelaria().equals("")){
-                    cadenaCCP = cadenaCCP + addCadena(mrVO.getFraccionArancelaria());
-                }
-                if(mrVO.getUuidComercioExt() != null && !mrVO.getUuidComercioExt().equals("")){
-                    cadenaCCP = cadenaCCP + addCadena(mrVO.getUuidComercioExt());
-                }
-                if(mrVO.getPedimentosVO() != null && !mrVO.getPedimentosVO().equals("")){
-                    PedimentosVO pdsVO = complementoCartaPorteDao.consultaPedimentos(fctClef);
-                    if(pdsVO.getPedimentoVO() != null && !pdsVO.getPedimentoVO().equals("")){
-                        ArrayList<PedimentoVO> pdVO = complementoCartaPorteDao.consultaPedimento(fctClef);
-                        if(pdVO.get(0).toString() != null && !pdVO.get(0).toString().equals("")){
-                            cadenaCCP =  cadenaCCP + addCadena(pdVO.get(0).toString());
+            if (cartaPorteVO.getViaEntradaSalida() != null && !cartaPorteVO.getViaEntradaSalida().equals("")){
+                cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getViaEntradaSalida());
+            }
+            if (cartaPorteVO.getTotalDistRec() != null && !cartaPorteVO.getTotalDistRec().equals("")){
+                cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getTotalDistRec().toString());
+            }
+            if(cartaPorteVO.getUbicacionesVO() != null){   
+                if(cartaPorteVO.getUbicacionesVO().getUbicacionVO() != null){
+                    for(int i=0; i<cartaPorteVO.getUbicacionesVO().getUbicacionVO().size(); i++){
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getUbicacionesVO().getUbicacionVO().get(i).getTipoUbicacion());
+                        if(cartaPorteVO.getUbicacionesVO().getUbicacionVO().get(i).getIdUbicacion() != null && !cartaPorteVO.getUbicacionesVO().getUbicacionVO().get(i).getIdUbicacion().equals("")){
+                            cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getUbicacionesVO().getUbicacionVO().get(i).getIdUbicacion());
+                        }
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getUbicacionesVO().getUbicacionVO().get(i).getRfcRemitenteDestinatario());
+                        if(cartaPorteVO.getUbicacionesVO().getUbicacionVO().get(i).getNombreRemitenteDestinatario() != null && !cartaPorteVO.getUbicacionesVO().getUbicacionVO().get(i).getNombreRemitenteDestinatario().equals("")){
+                            cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getUbicacionesVO().getUbicacionVO().get(i).getNombreRemitenteDestinatario());
+                        }
+                        if(cartaPorteVO.getUbicacionesVO().getUbicacionVO().get(i).getNumRegIdTrib() != null && !cartaPorteVO.getUbicacionesVO().getUbicacionVO().get(i).getNumRegIdTrib().equals("")){
+                            cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getUbicacionesVO().getUbicacionVO().get(i).getNumRegIdTrib());
+                        }
+                        if(cartaPorteVO.getUbicacionesVO().getUbicacionVO().get(i).getResidenciaFiscal() != null && !cartaPorteVO.getUbicacionesVO().getUbicacionVO().get(i).getResidenciaFiscal().equals("")){
+                            cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getUbicacionesVO().getUbicacionVO().get(i).getResidenciaFiscal());
+                        }
+                        if(cartaPorteVO.getUbicacionesVO().getUbicacionVO().get(i).getNumEstacion() != null && !cartaPorteVO.getUbicacionesVO().getUbicacionVO().get(i).getNumEstacion().equals("")){
+                            cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getUbicacionesVO().getUbicacionVO().get(i).getNumEstacion());
+                        }
+                        if(cartaPorteVO.getUbicacionesVO().getUbicacionVO().get(i).getNombreEstacion() != null && !cartaPorteVO.getUbicacionesVO().getUbicacionVO().get(i).getNombreEstacion().equals("")){
+                            cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getUbicacionesVO().getUbicacionVO().get(i).getNombreEstacion());
+                        }
+                        if(cartaPorteVO.getUbicacionesVO().getUbicacionVO().get(i).getNavegacionTrafico() != null && !cartaPorteVO.getUbicacionesVO().getUbicacionVO().get(i).getNavegacionTrafico().equals("")){
+                            cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getUbicacionesVO().getUbicacionVO().get(i).getNavegacionTrafico());
+                        }
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getUbicacionesVO().getUbicacionVO().get(i).getFechaHoraSalidaLlegada().toString());
+                        if(cartaPorteVO.getUbicacionesVO().getUbicacionVO().get(i).getTipoEstacion() != null && !cartaPorteVO.getUbicacionesVO().getUbicacionVO().get(i).getTipoEstacion().equals("")){
+                            cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getUbicacionesVO().getUbicacionVO().get(i).getTipoEstacion());
+                        }
+                        if(cartaPorteVO.getUbicacionesVO().getUbicacionVO().get(i).getDistanciaRecorrida() != null && !cartaPorteVO.getUbicacionesVO().getUbicacionVO().get(i).getDistanciaRecorrida().equals("")){
+                            cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getUbicacionesVO().getUbicacionVO().get(i).getDistanciaRecorrida());
+                        }
+                        if(cartaPorteVO.getUbicacionesVO().getUbicacionVO().get(i).getDomicilioVO() != null){
+                            if(cartaPorteVO.getUbicacionesVO().getUbicacionVO().get(i).getDomicilioVO().getCalle() != null && !cartaPorteVO.getUbicacionesVO().getUbicacionVO().get(i).getDomicilioVO().getCalle().equals("")){
+                                cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getUbicacionesVO().getUbicacionVO().get(i).getDomicilioVO().getCalle());
+                            }
+                            if(cartaPorteVO.getUbicacionesVO().getUbicacionVO().get(i).getDomicilioVO().getNumeroExterior() != null && !cartaPorteVO.getUbicacionesVO().getUbicacionVO().get(i).getDomicilioVO().getNumeroExterior().equals("")){
+                                cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getUbicacionesVO().getUbicacionVO().get(i).getDomicilioVO().getNumeroExterior());
+                            }
+                            if(cartaPorteVO.getUbicacionesVO().getUbicacionVO().get(i).getDomicilioVO().getNumeroInterior() != null && !cartaPorteVO.getUbicacionesVO().getUbicacionVO().get(i).getDomicilioVO().getNumeroInterior().equals("")){
+                                cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getUbicacionesVO().getUbicacionVO().get(i).getDomicilioVO().getNumeroInterior());
+                            }
+                            if(cartaPorteVO.getUbicacionesVO().getUbicacionVO().get(i).getDomicilioVO().getColonia() != null && !cartaPorteVO.getUbicacionesVO().getUbicacionVO().get(i).getDomicilioVO().getColonia().equals("")){
+                                cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getUbicacionesVO().getUbicacionVO().get(i).getDomicilioVO().getColonia());
+                            }
+                            if(cartaPorteVO.getUbicacionesVO().getUbicacionVO().get(i).getDomicilioVO().getLocalidad() != null && !cartaPorteVO.getUbicacionesVO().getUbicacionVO().get(i).getDomicilioVO().getLocalidad().equals("")){
+                                cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getUbicacionesVO().getUbicacionVO().get(i).getDomicilioVO().getLocalidad());
+                            }
+                            if(cartaPorteVO.getUbicacionesVO().getUbicacionVO().get(i).getDomicilioVO().getReferencia() != null && !cartaPorteVO.getUbicacionesVO().getUbicacionVO().get(i).getDomicilioVO().getReferencia().equals("")){
+                                cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getUbicacionesVO().getUbicacionVO().get(i).getDomicilioVO().getReferencia());
+                            }
+                            if(cartaPorteVO.getUbicacionesVO().getUbicacionVO().get(i).getDomicilioVO().getMunicipio() != null && !cartaPorteVO.getUbicacionesVO().getUbicacionVO().get(i).getDomicilioVO().getMunicipio().equals("")){
+                                cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getUbicacionesVO().getUbicacionVO().get(i).getDomicilioVO().getMunicipio());
+                            }
+                            cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getUbicacionesVO().getUbicacionVO().get(i).getDomicilioVO().getEstado());
+                            cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getUbicacionesVO().getUbicacionVO().get(i).getDomicilioVO().getPais());
+                            cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getUbicacionesVO().getUbicacionVO().get(i).getDomicilioVO().getCodigoPostal());
                         }
                     }
                 }
-                if(mrVO.getGuiasIdentificacionVO() != null && !mrVO.getGuiasIdentificacionVO().equals("")){
-                    cadenaCCP = cadenaCCP + addCadena(giVO.getNumeroGuiaIdentificacion());
-                    cadenaCCP = cadenaCCP + addCadena(giVO.getDescripGuiaIdentificacion());
-                    cadenaCCP = cadenaCCP + addCadena(giVO.getPesoGuiaIdentificacion().toString());
+            }
+            if(cartaPorteVO.getMercanciasVO() != null){
+                cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getPesoBrutoTotal().toString());
+                cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getUnidadPeso().toString());
+                if(cartaPorteVO.getMercanciasVO().getPesoNetoTotal() != null && !cartaPorteVO.getMercanciasVO().getPesoNetoTotal().equals("")){
+                    cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getPesoNetoTotal().toString());
                 }
-                if(mrVO.getCantidadTransportaVO() != null && !mrVO.getCantidadTransportaVO().equals("")){
-                    cadenaCCP = cadenaCCP + addCadena(ctrVO.getCantidad().toString());
-                    cadenaCCP = cadenaCCP + addCadena(ctrVO.getIdOrigen());
-                    cadenaCCP = cadenaCCP + addCadena(ctrVO.getIdDestino());
-                    if(ctrVO.getCvesTransporte() != null && !ctrVO.getCvesTransporte().equals("")){
-                        cadenaCCP = cadenaCCP + addCadena(ctrVO.getCvesTransporte());
+                cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getNumTotalMercancias().toString());
+                if(cartaPorteVO.getMercanciasVO().getCargoPorTasacion() != null && !cartaPorteVO.getMercanciasVO().getCargoPorTasacion().equals("")){
+                    cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getCargoPorTasacion().toString());
+                }
+                if(cartaPorteVO.getMercanciasVO().getMercanciaVO() != null){
+                    cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getMercanciaVO().getBienesTransp());
+                    if(cartaPorteVO.getMercanciasVO().getMercanciaVO().getClaveSTCC() != null && !cartaPorteVO.getMercanciasVO().getMercanciaVO().getClaveSTCC().equals("")){
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getMercanciaVO().getClaveSTCC());                
+                    }
+                    cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getMercanciaVO().getDescripcion());
+                    cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getMercanciaVO().getCantidad().toString());
+                    cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getMercanciaVO().getClaveUnidad());
+                    if(cartaPorteVO.getMercanciasVO().getMercanciaVO().getUnidad() != null && !cartaPorteVO.getMercanciasVO().getMercanciaVO().getUnidad().equals("")){
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getMercanciaVO().getUnidad());
+                    }
+                    if(cartaPorteVO.getMercanciasVO().getMercanciaVO().getDimensiones() != null && !cartaPorteVO.getMercanciasVO().getMercanciaVO().getDimensiones().equals("")){
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getMercanciaVO().getDimensiones());
+                    }
+                    if(cartaPorteVO.getMercanciasVO().getMercanciaVO().getMaterialPeligroso() != null && !cartaPorteVO.getMercanciasVO().getMercanciaVO().getMaterialPeligroso().equals("")){
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getMercanciaVO().getMaterialPeligroso());
+                    }
+                    if(cartaPorteVO.getMercanciasVO().getMercanciaVO().getCveMaterialPeligroso() != null && !cartaPorteVO.getMercanciasVO().getMercanciaVO().getCveMaterialPeligroso().equals("")){
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getMercanciaVO().getCveMaterialPeligroso());
+                    }
+                    if(cartaPorteVO.getMercanciasVO().getMercanciaVO().getEmbalaje() != null && !cartaPorteVO.getMercanciasVO().getMercanciaVO().getEmbalaje().equals("")){
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getMercanciaVO().getEmbalaje());
+                    }
+                    if(cartaPorteVO.getMercanciasVO().getMercanciaVO().getDescripEmbalaje() != null && !cartaPorteVO.getMercanciasVO().getMercanciaVO().getDescripEmbalaje().equals("")){
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getMercanciaVO().getDescripEmbalaje());
+                    }
+                    cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getMercanciaVO().getPesoEnKg().toString());
+                    if(cartaPorteVO.getMercanciasVO().getMercanciaVO().getValorMercancia() != null && !cartaPorteVO.getMercanciasVO().getMercanciaVO().getValorMercancia().equals("")){
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getMercanciaVO().getValorMercancia().toString());
+                    }
+                    if(cartaPorteVO.getMercanciasVO().getMercanciaVO().getMoneda() != null && !cartaPorteVO.getMercanciasVO().getMercanciaVO().getMoneda().equals("")){
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getMercanciaVO().getMoneda());
+                    }
+                    if(cartaPorteVO.getMercanciasVO().getMercanciaVO().getFraccionArancelaria() != null && !cartaPorteVO.getMercanciasVO().getMercanciaVO().getFraccionArancelaria().equals("")){
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getMercanciaVO().getFraccionArancelaria());
+                    }
+                    if(cartaPorteVO.getMercanciasVO().getMercanciaVO().getUuidComercioExt() != null && !cartaPorteVO.getMercanciasVO().getMercanciaVO().getUuidComercioExt().equals("")){
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getMercanciaVO().getUuidComercioExt());
+                    }
+                    if(cartaPorteVO.getMercanciasVO().getMercanciaVO().getPedimentosVO() != null){
+
+                        if(cartaPorteVO.getMercanciasVO().getMercanciaVO().getPedimentosVO().getPedimentoVO() != null){
+                            for(int i=0; i<cartaPorteVO.getMercanciasVO().getMercanciaVO().getPedimentosVO().getPedimentoVO().size(); i++){
+                                if(cartaPorteVO.getMercanciasVO().getMercanciaVO().getPedimentosVO().getPedimentoVO().get(i).getPedimento() != null && !cartaPorteVO.getMercanciasVO().getMercanciaVO().getPedimentosVO().getPedimentoVO().get(i).getPedimento().equals("")){
+                                    cadenaCCP =  cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getMercanciaVO().getPedimentosVO().getPedimentoVO().get(i).getPedimento());
+                                }
+                            }
+                        }
+                    }
+                    if(cartaPorteVO.getMercanciasVO().getMercanciaVO().getGuiasIdentificacionVO() != null){
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getMercanciaVO().getGuiasIdentificacionVO().getNumeroGuiaIdentificacion());
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getMercanciaVO().getGuiasIdentificacionVO().getDescripGuiaIdentificacion());
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getMercanciaVO().getGuiasIdentificacionVO().getPesoGuiaIdentificacion().toString());
+                    }
+                    if(cartaPorteVO.getMercanciasVO().getMercanciaVO().getCantidadTransportaVO() != null && !cartaPorteVO.getMercanciasVO().getMercanciaVO().getCantidadTransportaVO().equals("")){
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getMercanciaVO().getCantidadTransportaVO().getCantidad().toString());
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getMercanciaVO().getCantidadTransportaVO().getIdOrigen());
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getMercanciaVO().getCantidadTransportaVO().getIdDestino());
+                        if(cartaPorteVO.getMercanciasVO().getMercanciaVO().getCantidadTransportaVO().getCvesTransporte() != null && !cartaPorteVO.getMercanciasVO().getMercanciaVO().getCantidadTransportaVO().getCvesTransporte().equals("")){
+                            cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getMercanciaVO().getCantidadTransportaVO().getCvesTransporte());
+                        }
+                    }
+                    if(cartaPorteVO.getMercanciasVO().getMercanciaVO().getDetalleMercanciaVO() != null){
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getMercanciaVO().getDetalleMercanciaVO().getUnidadPesoMerc());
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getMercanciaVO().getDetalleMercanciaVO().getPesoBruto().toString());
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getMercanciaVO().getDetalleMercanciaVO().getPesoNeto().toString());
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getMercanciaVO().getDetalleMercanciaVO().getPesoTara().toString());
+                        if(cartaPorteVO.getMercanciasVO().getMercanciaVO().getDetalleMercanciaVO().getNumPiezas() != null && !cartaPorteVO.getMercanciasVO().getMercanciaVO().getDetalleMercanciaVO().getNumPiezas().equals("")){
+                            cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getMercanciaVO().getDetalleMercanciaVO().getNumPiezas().toString());
+                        }
                     }
                 }
-                if(mrVO.getDetalleMercanciaVO() != null && !mrVO.getDetalleMercanciaVO().equals("")){
-                    cadenaCCP = cadenaCCP + addCadena(demVO.getUnidadPesoMerc());
-                    cadenaCCP = cadenaCCP + addCadena(demVO.getPesoBruto().toString());
-                    cadenaCCP = cadenaCCP + addCadena(demVO.getPesoNeto().toString());
-                    cadenaCCP = cadenaCCP + addCadena(demVO.getPesoTara().toString());
-                    if(demVO.getNumPiezas() != null && !demVO.getNumPiezas().equals("")){
-                        cadenaCCP = cadenaCCP + addCadena(demVO.getNumPiezas().toString());
+                if(cartaPorteVO.getMercanciasVO().getAutotransporteVO() != null){
+                    cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getAutotransporteVO().getPermSCT());
+                    cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getAutotransporteVO().getNumPermisoSCT());
+                    if(cartaPorteVO.getMercanciasVO().getAutotransporteVO().getIdentificacionVehicularVO() != null && !cartaPorteVO.getMercanciasVO().getAutotransporteVO().getIdentificacionVehicularVO().equals("")){
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getAutotransporteVO().getIdentificacionVehicularVO().getConfigVehicular());
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getAutotransporteVO().getIdentificacionVehicularVO().getPlacaVM());
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getAutotransporteVO().getIdentificacionVehicularVO().getAnioModeloVM().toString());
+                    }
+                    if(cartaPorteVO.getMercanciasVO().getAutotransporteVO().getSegurosVO() != null){
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getAutotransporteVO().getSegurosVO().getAseguraRespCivil());
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getAutotransporteVO().getSegurosVO().getPolizaRespCivil());
+                        if(cartaPorteVO.getMercanciasVO().getAutotransporteVO().getSegurosVO().getAseguraMedAmbiente() != null && !cartaPorteVO.getMercanciasVO().getAutotransporteVO().getSegurosVO().getAseguraMedAmbiente().equals("")){
+                            cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getAutotransporteVO().getSegurosVO().getAseguraMedAmbiente());
+                        }
+                        if(cartaPorteVO.getMercanciasVO().getAutotransporteVO().getSegurosVO().getPolizaMedAmbiente() != null && !cartaPorteVO.getMercanciasVO().getAutotransporteVO().getSegurosVO().getPolizaMedAmbiente().equals("")){
+                            cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getAutotransporteVO().getSegurosVO().getPolizaMedAmbiente());
+                        }
+                        if(cartaPorteVO.getMercanciasVO().getAutotransporteVO().getSegurosVO().getAseguraCarga() != null && !cartaPorteVO.getMercanciasVO().getAutotransporteVO().getSegurosVO().getAseguraCarga().equals("")){
+                            cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getAutotransporteVO().getSegurosVO().getAseguraCarga());
+                        }
+                        if(cartaPorteVO.getMercanciasVO().getAutotransporteVO().getSegurosVO().getPolizaCarga() != null && !cartaPorteVO.getMercanciasVO().getAutotransporteVO().getSegurosVO().getPolizaCarga().equals("")){
+                            cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getAutotransporteVO().getSegurosVO().getPolizaCarga());
+                        }
+                        if(cartaPorteVO.getMercanciasVO().getAutotransporteVO().getSegurosVO().getPrimaSeguro() != null && !cartaPorteVO.getMercanciasVO().getAutotransporteVO().getSegurosVO().getPrimaSeguro().equals("")){
+                            cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getAutotransporteVO().getSegurosVO().getPrimaSeguro().toString());
+                        }
+                    }
+                    if(cartaPorteVO.getMercanciasVO().getAutotransporteVO().getRemolquesVO() != null){
+                        if(cartaPorteVO.getMercanciasVO().getAutotransporteVO().getRemolquesVO().getRemolqueVO() != null && !cartaPorteVO.getMercanciasVO().getAutotransporteVO().getRemolquesVO().getRemolqueVO().equals("")){
+                            for(int i = 0; i<cartaPorteVO.getMercanciasVO().getAutotransporteVO().getRemolquesVO().getRemolqueVO().size(); i++){
+                                cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getAutotransporteVO().getRemolquesVO().getRemolqueVO().get(i).getSubTipoRem());
+                                cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getAutotransporteVO().getRemolquesVO().getRemolqueVO().get(i).getPlaca());
+                            }
+                        }
+                    }
+                }
+                if(cartaPorteVO.getMercanciasVO().getTransporteMaritimoVO() != null){
+                    if(cartaPorteVO.getMercanciasVO().getTransporteMaritimoVO().getPermSCT() != null && !cartaPorteVO.getMercanciasVO().getTransporteMaritimoVO().getPermSCT().equals("")){
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getTransporteMaritimoVO().getPermSCT());
+                    }
+                    if(cartaPorteVO.getMercanciasVO().getTransporteMaritimoVO().getNumPermisoSCT() != null && !cartaPorteVO.getMercanciasVO().getTransporteMaritimoVO().getNumPermisoSCT().equals("")){
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getTransporteMaritimoVO().getNumPermisoSCT());
+                    }
+                    if(cartaPorteVO.getMercanciasVO().getTransporteMaritimoVO().getNombreAseg() != null && !cartaPorteVO.getMercanciasVO().getTransporteMaritimoVO().getNombreAseg().equals("")){
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getTransporteMaritimoVO().getNombreAseg());
+                    }
+                    if(cartaPorteVO.getMercanciasVO().getTransporteMaritimoVO().getNumPolizaSeguro() != null && !cartaPorteVO.getMercanciasVO().getTransporteMaritimoVO().getNumPolizaSeguro().equals("")){
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getTransporteMaritimoVO().getNumPolizaSeguro());
+                    }
+                    cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getTransporteMaritimoVO().getTipoEmbarcacion());
+                    cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getTransporteMaritimoVO().getMatricula());
+                    cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getTransporteMaritimoVO().getNumeroOMI());
+                    if(cartaPorteVO.getMercanciasVO().getTransporteMaritimoVO().getAnioEmbarcacion() != null && !cartaPorteVO.getMercanciasVO().getTransporteMaritimoVO().getAnioEmbarcacion().equals("")){
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getTransporteMaritimoVO().getAnioEmbarcacion());
+                    }
+                    if(cartaPorteVO.getMercanciasVO().getTransporteMaritimoVO().getNombreEmbarc() != null && !cartaPorteVO.getMercanciasVO().getTransporteMaritimoVO().getNombreEmbarc().equals("")){
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getTransporteMaritimoVO().getNombreEmbarc());
+                    }
+                    cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getTransporteMaritimoVO().getNacionalidadEmbarc());
+                    cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getTransporteMaritimoVO().getUnidadesDeArqBruto().toString());
+                    cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getTransporteMaritimoVO().getTipoCarga());
+                    cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getTransporteMaritimoVO().getNumCertITC());
+                    if(cartaPorteVO.getMercanciasVO().getTransporteMaritimoVO().getEslora() != null && !cartaPorteVO.getMercanciasVO().getTransporteMaritimoVO().getEslora().equals("")){
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getTransporteMaritimoVO().getEslora().toString());
+                    }
+                    if(cartaPorteVO.getMercanciasVO().getTransporteMaritimoVO().getManga() != null && !cartaPorteVO.getMercanciasVO().getTransporteMaritimoVO().getManga().equals("")){
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getTransporteMaritimoVO().getManga().toString());
+                    }
+                    if(cartaPorteVO.getMercanciasVO().getTransporteMaritimoVO().getCalado() != null && !cartaPorteVO.getMercanciasVO().getTransporteMaritimoVO().getCalado().equals("")){
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getTransporteMaritimoVO().getCalado().toString());
+                    }
+                    if(cartaPorteVO.getMercanciasVO().getTransporteMaritimoVO().getLineaNaviera() != null && !cartaPorteVO.getMercanciasVO().getTransporteMaritimoVO().getLineaNaviera().equals("")){
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getTransporteMaritimoVO().getLineaNaviera());
+                    }
+                    cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getTransporteMaritimoVO().getNombreAgenteNaviero());
+                    cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getTransporteMaritimoVO().getNumAutorizacionNaviero());
+                    if(cartaPorteVO.getMercanciasVO().getTransporteMaritimoVO().getNumViaje() != null && !cartaPorteVO.getMercanciasVO().getTransporteMaritimoVO().getNumViaje().equals("")){
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getTransporteMaritimoVO().getNumViaje());
+                    }
+                    if(cartaPorteVO.getMercanciasVO().getTransporteMaritimoVO().getNumConocEmbarc() != null && !cartaPorteVO.getMercanciasVO().getTransporteMaritimoVO().getNumConocEmbarc().equals("")){
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getTransporteMaritimoVO().getNumConocEmbarc());
+                    }
+                    if(cartaPorteVO.getMercanciasVO().getTransporteMaritimoVO().getContenedorVO() != null){
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getTransporteMaritimoVO().getContenedorVO().getMatriculaContenedor());
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getTransporteMaritimoVO().getContenedorVO().getTipoContenedor());
+                        if(cartaPorteVO.getMercanciasVO().getTransporteMaritimoVO().getContenedorVO().getNumPrecinto() != null && !cartaPorteVO.getMercanciasVO().getTransporteMaritimoVO().getContenedorVO().getNumPrecinto().equals("")){
+                            cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getTransporteMaritimoVO().getContenedorVO().getNumPrecinto());
+                        }
+                    }
+                }
+                if(cartaPorteVO.getMercanciasVO().getTransporteAereoVO() != null){
+                    cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getTransporteAereoVO().getPermSCT());
+                    cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getTransporteAereoVO().getNumPermisoSCT());
+                    if(cartaPorteVO.getMercanciasVO().getTransporteAereoVO().getMatriculaAeronave() != null && !cartaPorteVO.getMercanciasVO().getTransporteAereoVO().getMatriculaAeronave().equals("")){
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getTransporteAereoVO().getMatriculaAeronave());
+                    }
+                    if(cartaPorteVO.getMercanciasVO().getTransporteAereoVO().getNombreAseg() != null && !cartaPorteVO.getMercanciasVO().getTransporteAereoVO().getNombreAseg().equals("")){
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getTransporteAereoVO().getNombreAseg());
+                    }
+                    if(cartaPorteVO.getMercanciasVO().getTransporteAereoVO().getNumPolizaSeguro() != null && !cartaPorteVO.getMercanciasVO().getTransporteAereoVO().getNumPolizaSeguro().equals("")){
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getTransporteAereoVO().getNumPolizaSeguro());
+                    }
+                    cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getTransporteAereoVO().getNumeroGuia());
+                    if(cartaPorteVO.getMercanciasVO().getTransporteAereoVO().getLugarContrato() != null && !cartaPorteVO.getMercanciasVO().getTransporteAereoVO().getLugarContrato().equals("")){
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getTransporteAereoVO().getLugarContrato());
+                    }
+                    cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getTransporteAereoVO().getCodigoTransportista());
+                    if(cartaPorteVO.getMercanciasVO().getTransporteAereoVO().getRfcEmbarcador() != null && !cartaPorteVO.getMercanciasVO().getTransporteAereoVO().getRfcEmbarcador().equals("")){
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getTransporteAereoVO().getRfcEmbarcador());
+                    }
+                    if(cartaPorteVO.getMercanciasVO().getTransporteAereoVO().getNumRegIdTribEmbarc() != null && !cartaPorteVO.getMercanciasVO().getTransporteAereoVO().getNumRegIdTribEmbarc().equals("")){
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getTransporteAereoVO().getNumRegIdTribEmbarc());
+                    }
+                    if(cartaPorteVO.getMercanciasVO().getTransporteAereoVO().getResidenciaFiscalEmbarc() != null && !cartaPorteVO.getMercanciasVO().getTransporteAereoVO().getResidenciaFiscalEmbarc().equals("")){
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getTransporteAereoVO().getResidenciaFiscalEmbarc());
+                    }
+                    if(cartaPorteVO.getMercanciasVO().getTransporteAereoVO().getNombreEmbarcador() != null && !cartaPorteVO.getMercanciasVO().getTransporteAereoVO().getNombreEmbarcador().equals("")){
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getTransporteAereoVO().getNombreEmbarcador());
+                    }
+                }
+                if(cartaPorteVO.getMercanciasVO().getTransporteFerroviarioVO() != null){
+                    cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getTransporteFerroviarioVO().getTipoDeServicio());
+                    cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getTransporteFerroviarioVO().getTipoDeTrafico());
+                    if(cartaPorteVO.getMercanciasVO().getTransporteFerroviarioVO().getNombreAseg() != null && !cartaPorteVO.getMercanciasVO().getTransporteFerroviarioVO().getNombreAseg().equals("")){
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getTransporteFerroviarioVO().getNombreAseg());
+                    }
+                    if(cartaPorteVO.getMercanciasVO().getTransporteFerroviarioVO().getNumPolizaSeguro() != null && !cartaPorteVO.getMercanciasVO().getTransporteFerroviarioVO().getNumPolizaSeguro().equals("")){
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getTransporteFerroviarioVO().getNumPolizaSeguro());
+                    }
+                    if(cartaPorteVO.getMercanciasVO().getTransporteFerroviarioVO().getDerechosDePasoVO() != null){
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getTransporteFerroviarioVO().getDerechosDePasoVO().getTipoDerechoDePaso());
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getTransporteFerroviarioVO().getDerechosDePasoVO().getKilometrajePagado().toString());
+                    }
+                    if(cartaPorteVO.getMercanciasVO().getTransporteFerroviarioVO().getCarroVO() != null){
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getTransporteFerroviarioVO().getCarroVO().getTipoCarro());
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getTransporteFerroviarioVO().getCarroVO().getMatriculaCarro());
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getTransporteFerroviarioVO().getCarroVO().getGuiaCarro());
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getTransporteFerroviarioVO().getCarroVO().getToneladasNetasCarro().toString());
+                        if(cartaPorteVO.getMercanciasVO().getTransporteFerroviarioVO().getCarroVO().getContenedorVO() != null){
+                            cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getTransporteFerroviarioVO().getCarroVO().getContenedorVO().getTipoContenedor());
+                            cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getTransporteFerroviarioVO().getCarroVO().getContenedorVO().getPesoContenedorVacio().toString());
+                            cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getMercanciasVO().getTransporteFerroviarioVO().getCarroVO().getContenedorVO().getPesoNetoMercancia().toString());
+                        }
                     }
                 }
             }
-            if(mrsVO.getAutotransporteVO() != null && !mrsVO.getAutotransporteVO().equals("")){
-                cadenaCCP = cadenaCCP + addCadena(autVO.getPermSCT());
-                cadenaCCP = cadenaCCP + addCadena(autVO.getNumPermisoSCT());
-                if(autVO.getIdentificacionVehicularVO() != null && !autVO.getIdentificacionVehicularVO().equals("")){
-                    cadenaCCP = cadenaCCP + addCadena(ivVO.getConfigVehicular());
-                    cadenaCCP = cadenaCCP + addCadena(ivVO.getPlacaVM());
-                    cadenaCCP = cadenaCCP + addCadena(ivVO.getAnioModeloVM().toString());
-                }
-                if(autVO.getSegurosVO() != null && !autVO.getSegurosVO().equals("")){
-                    cadenaCCP = cadenaCCP + addCadena(sgVO.getAseguraRespCivil());
-                    cadenaCCP = cadenaCCP + addCadena(sgVO.getPolizaRespCivil());
-                    if(sgVO.getAseguraMedAmbiente() != null && !sgVO.getAseguraMedAmbiente().equals("")){
-                        cadenaCCP = cadenaCCP + addCadena(sgVO.getAseguraMedAmbiente());
+            if(cartaPorteVO.getFiguraTransporteVO() != null){
+                if(cartaPorteVO.getFiguraTransporteVO().getTiposFiguraVO() != null && !cartaPorteVO.getFiguraTransporteVO().getTiposFiguraVO().equals("")){
+                    cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getFiguraTransporteVO().getTiposFiguraVO().getTipoFigura());
+                    if(cartaPorteVO.getFiguraTransporteVO().getTiposFiguraVO().getRfcFigura() != null && !cartaPorteVO.getFiguraTransporteVO().getTiposFiguraVO().getRfcFigura().equals("")){
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getFiguraTransporteVO().getTiposFiguraVO().getRfcFigura());
                     }
-                    if(sgVO.getPolizaMedAmbiente() != null && !sgVO.getPolizaMedAmbiente().equals("")){
-                        cadenaCCP = cadenaCCP + addCadena(sgVO.getPolizaMedAmbiente());
+                    if(cartaPorteVO.getFiguraTransporteVO().getTiposFiguraVO().getNumLicencia() != null && !cartaPorteVO.getFiguraTransporteVO().getTiposFiguraVO().getNumLicencia().equals("")){
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getFiguraTransporteVO().getTiposFiguraVO().getNumLicencia());
                     }
-                    if(sgVO.getAseguraCarga() != null && !sgVO.getAseguraCarga().equals("")){
-                        cadenaCCP = cadenaCCP + addCadena(sgVO.getAseguraCarga());
+                    if(cartaPorteVO.getFiguraTransporteVO().getTiposFiguraVO().getNombreFigura() != null && !cartaPorteVO.getFiguraTransporteVO().getTiposFiguraVO().getNombreFigura().equals("")){
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getFiguraTransporteVO().getTiposFiguraVO().getNombreFigura());
                     }
-                    if(sgVO.getPolizaCarga() != null && !sgVO.getPolizaCarga().equals("")){
-                        cadenaCCP = cadenaCCP + addCadena(sgVO.getPolizaCarga());
+                    if(cartaPorteVO.getFiguraTransporteVO().getTiposFiguraVO().getNumRegIdTribFigura() != null && !cartaPorteVO.getFiguraTransporteVO().getTiposFiguraVO().getNumRegIdTribFigura().equals("")){
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getFiguraTransporteVO().getTiposFiguraVO().getNumRegIdTribFigura());
                     }
-                    if(sgVO.getPrimaSeguro() != null && !sgVO.getPrimaSeguro().equals("")){
-                        cadenaCCP = cadenaCCP + addCadena(sgVO.getPrimaSeguro().toString());
+                    if(cartaPorteVO.getFiguraTransporteVO().getTiposFiguraVO().getResidenciaFiscalFigura() != null && !cartaPorteVO.getFiguraTransporteVO().getTiposFiguraVO().getResidenciaFiscalFigura().equals("")){
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getFiguraTransporteVO().getTiposFiguraVO().getResidenciaFiscalFigura());
                     }
-                }
-                if(autVO.getRemolquesVO() != null && !autVO.getRemolquesVO().equals("")){
-                    if(rmsVO.getRemolqueVO() != null && !rmsVO.getRemolqueVO().equals("")){
-                        RemolqueVO rmVO = null;
-                        cadenaCCP = cadenaCCP + addCadena(rmVO.getSubTipoRem());
-                        cadenaCCP = cadenaCCP + addCadena(rmVO.getPlaca());
+                    if(cartaPorteVO.getFiguraTransporteVO().getTiposFiguraVO().getPartesTransporteVO() != null){
+                        //PartesTransporteVO ptsVO = null;
+                        if(cartaPorteVO.getFiguraTransporteVO().getTiposFiguraVO().getPartesTransporteVO().getParteTransporteVO() != null){
+                            //ArrayList<ParteTransporteVO> ptVO = complementoCartaPorteDao.consultaParteTransporte(fctClef);
+                            for(int i=0; i<cartaPorteVO.getFiguraTransporteVO().getTiposFiguraVO().getPartesTransporteVO().getParteTransporteVO().size(); i++){
+                                cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getFiguraTransporteVO().getTiposFiguraVO().getPartesTransporteVO().getParteTransporteVO().get(i).getParteTransporte());
+                            }
+                        }
                     }
-                }
-            }
-            if(mrsVO.getTransporteMaritimoVO() != null && !mrsVO.getTransporteMaritimoVO().equals("")){
-                if(tmVO.getPermSCT() != null && !tmVO.getPermSCT().equals("")){
-                    cadenaCCP = cadenaCCP + addCadena(tmVO.getPermSCT());
-                }
-                if(tmVO.getNumPermisoSCT() != null && !tmVO.getNumPermisoSCT().equals("")){
-                    cadenaCCP = cadenaCCP + addCadena(tmVO.getNumPermisoSCT());
-                }
-                if(tmVO.getNombreAseg() != null && !tmVO.getNombreAseg().equals("")){
-                    cadenaCCP = cadenaCCP + addCadena(tmVO.getNombreAseg());
-                }
-                if(tmVO.getNumPolizaSeguro() != null && !tmVO.getNumPolizaSeguro().equals("")){
-                    cadenaCCP = cadenaCCP + addCadena(tmVO.getNumPolizaSeguro());
-                }
-                cadenaCCP = cadenaCCP + addCadena(tmVO.getTipoEmbarcacion());
-                cadenaCCP = cadenaCCP + addCadena(tmVO.getMatricula());
-                cadenaCCP = cadenaCCP + addCadena(tmVO.getNumeroOMI());
-                if(tmVO.getAnioEmbarcacion() != null && !tmVO.getAnioEmbarcacion().equals("")){
-                    cadenaCCP = cadenaCCP + addCadena(tmVO.getAnioEmbarcacion());
-                }
-                if(tmVO.getNombreEmbarc() != null && !tmVO.getNombreEmbarc().equals("")){
-                    cadenaCCP = cadenaCCP + addCadena(tmVO.getNombreEmbarc());
-                }
-                cadenaCCP = cadenaCCP + addCadena(tmVO.getNacionalidadEmbarc());
-                cadenaCCP = cadenaCCP + addCadena(tmVO.getUnidadesDeArqBruto().toString());
-                cadenaCCP = cadenaCCP + addCadena(tmVO.getTipoCarga());
-                cadenaCCP = cadenaCCP + addCadena(tmVO.getNumCertITC());
-                if(tmVO.getEslora() != null && !tmVO.getEslora().equals("")){
-                    cadenaCCP = cadenaCCP + addCadena(tmVO.getEslora().toString());
-                }
-                if(tmVO.getManga() != null && !tmVO.getManga().equals("")){
-                    cadenaCCP = cadenaCCP + addCadena(tmVO.getManga().toString());
-                }
-                if(tmVO.getCalado() != null && !tmVO.getCalado().equals("")){
-                    cadenaCCP = cadenaCCP + addCadena(tmVO.getCalado().toString());
-                }
-                if(tmVO.getLineaNaviera() != null && !tmVO.getLineaNaviera().equals("")){
-                    cadenaCCP = cadenaCCP + addCadena(tmVO.getLineaNaviera());
-                }
-                cadenaCCP = cadenaCCP + addCadena(tmVO.getNombreAgenteNaviero());
-                cadenaCCP = cadenaCCP + addCadena(tmVO.getNumAutorizacionNaviero());
-                if(tmVO.getNumViaje() != null && !tmVO.getNumViaje().equals("")){
-                    cadenaCCP = cadenaCCP + addCadena(tmVO.getNumViaje());
-                }
-                if(tmVO.getNumConocEmbarc() != null && !tmVO.getNumConocEmbarc().equals("")){
-                    cadenaCCP = cadenaCCP + addCadena(tmVO.getNumConocEmbarc());
-                }
-                if(tmVO.getContenedorVO() != null && !tmVO.getContenedorVO().equals("")){
-                    cadenaCCP = cadenaCCP + addCadena(ctVO.getMatriculaContenedor());
-                    cadenaCCP = cadenaCCP + addCadena(ctVO.getTipoContenedor());
-                    if(ctVO.getNumPrecinto() != null && !ctVO.getNumPrecinto().equals("")){
-                        cadenaCCP = cadenaCCP + addCadena(ctVO.getNumPrecinto());
+                    if(cartaPorteVO.getFiguraTransporteVO().getTiposFiguraVO().getDomicilioVO() != null){
+                        if(cartaPorteVO.getFiguraTransporteVO().getTiposFiguraVO().getDomicilioVO().getCalle() != null && !cartaPorteVO.getFiguraTransporteVO().getTiposFiguraVO().getDomicilioVO().getCalle().equals("")){
+                            cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getFiguraTransporteVO().getTiposFiguraVO().getDomicilioVO().getCalle());
+                        }
+                        if(cartaPorteVO.getFiguraTransporteVO().getTiposFiguraVO().getDomicilioVO().getNumeroExterior() != null && !cartaPorteVO.getFiguraTransporteVO().getTiposFiguraVO().getDomicilioVO().getNumeroExterior().equals("")){
+                            cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getFiguraTransporteVO().getTiposFiguraVO().getDomicilioVO().getNumeroExterior());
+                        }
+                        if(cartaPorteVO.getFiguraTransporteVO().getTiposFiguraVO().getDomicilioVO().getNumeroInterior() != null && !cartaPorteVO.getFiguraTransporteVO().getTiposFiguraVO().getDomicilioVO().getNumeroInterior().equals("")){
+                            cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getFiguraTransporteVO().getTiposFiguraVO().getDomicilioVO().getNumeroInterior());
+                        }
+                        if(cartaPorteVO.getFiguraTransporteVO().getTiposFiguraVO().getDomicilioVO().getColonia() != null && !cartaPorteVO.getFiguraTransporteVO().getTiposFiguraVO().getDomicilioVO().getColonia().equals("")){
+                            cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getFiguraTransporteVO().getTiposFiguraVO().getDomicilioVO().getColonia());
+                        }
+                        if(cartaPorteVO.getFiguraTransporteVO().getTiposFiguraVO().getDomicilioVO().getLocalidad() != null && !cartaPorteVO.getFiguraTransporteVO().getTiposFiguraVO().getDomicilioVO().getLocalidad().equals("")){
+                            cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getFiguraTransporteVO().getTiposFiguraVO().getDomicilioVO().getLocalidad());
+                        }
+                        if(cartaPorteVO.getFiguraTransporteVO().getTiposFiguraVO().getDomicilioVO().getReferencia() != null && !cartaPorteVO.getFiguraTransporteVO().getTiposFiguraVO().getDomicilioVO().getReferencia().equals("")){
+                            cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getFiguraTransporteVO().getTiposFiguraVO().getDomicilioVO().getReferencia());
+                        }
+                        if(cartaPorteVO.getFiguraTransporteVO().getTiposFiguraVO().getDomicilioVO().getMunicipio() != null && !cartaPorteVO.getFiguraTransporteVO().getTiposFiguraVO().getDomicilioVO().getMunicipio().equals("")){
+                            cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getFiguraTransporteVO().getTiposFiguraVO().getDomicilioVO().getMunicipio());
+                        }
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getFiguraTransporteVO().getTiposFiguraVO().getDomicilioVO().getEstado());
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getFiguraTransporteVO().getTiposFiguraVO().getDomicilioVO().getPais());
+                        cadenaCCP = cadenaCCP + addCadena(cartaPorteVO.getFiguraTransporteVO().getTiposFiguraVO().getDomicilioVO().getCodigoPostal());
                     }
                 }
             }
-            if(mrsVO.getTransporteAereoVO() != null && !mrsVO.getAutotransporteVO().equals("")){
-                cadenaCCP = cadenaCCP + addCadena(taVO.getPermSCT());
-                cadenaCCP = cadenaCCP + addCadena(taVO.getNumPermisoSCT());
-                if(taVO.getMatriculaAeronave() != null && !taVO.getMatriculaAeronave().equals("")){
-                    cadenaCCP = cadenaCCP + addCadena(taVO.getMatriculaAeronave());
-                }
-                if(taVO.getNombreAseg() != null && !taVO.getNombreAseg().equals("")){
-                    cadenaCCP = cadenaCCP + addCadena(taVO.getNombreAseg());
-                }
-                if(taVO.getNumPolizaSeguro() != null && !taVO.getNumPolizaSeguro().equals("")){
-                    cadenaCCP = cadenaCCP + addCadena(taVO.getNumPolizaSeguro());
-                }
-                cadenaCCP = cadenaCCP + addCadena(taVO.getNumeroGuia());
-                if(taVO.getLugarContrato() != null && !taVO.getLugarContrato().equals("")){
-                    cadenaCCP = cadenaCCP + addCadena(taVO.getLugarContrato());
-                }
-                cadenaCCP = cadenaCCP + addCadena(taVO.getCodigoTransportista());
-                if(taVO.getRfcEmbarcador() != null && !taVO.getRfcEmbarcador().equals("")){
-                    cadenaCCP = cadenaCCP + addCadena(taVO.getRfcEmbarcador());
-                }
-                if(taVO.getNumRegIdTribEmbarc() != null && !taVO.getNumRegIdTribEmbarc().equals("")){
-                    cadenaCCP = cadenaCCP + addCadena(taVO.getNumRegIdTribEmbarc());
-                }
-                if(taVO.getResidenciaFiscalEmbarc() != null && !taVO.getResidenciaFiscalEmbarc().equals("")){
-                    cadenaCCP = cadenaCCP + addCadena(taVO.getResidenciaFiscalEmbarc());
-                }
-                if(taVO.getNombreEmbarcador() != null && !taVO.getNombreEmbarcador().equals("")){
-                    cadenaCCP = cadenaCCP + addCadena(taVO.getNombreEmbarcador());
-                }
-            }
-            if(mrsVO.getTransporteFerroviarioVO() != null && mrsVO.getTransporteFerroviarioVO().equals("")){
-                cadenaCCP = cadenaCCP + addCadena(tfvVO.getTipoDeServicio());
-                cadenaCCP = cadenaCCP + addCadena(tfvVO.getTipoDeTrafico());
-                if(tfvVO.getNombreAseg() != null && !tfvVO.getNombreAseg().equals("")){
-                    cadenaCCP = cadenaCCP + addCadena(tfvVO.getNombreAseg());
-                }
-                if(tfvVO.getNumPolizaSeguro() != null && !tfvVO.getNumPolizaSeguro().equals("")){
-                    cadenaCCP = cadenaCCP + addCadena(tfvVO.getNumPolizaSeguro());
-                }
-                if(tfvVO.getDerechosDePasoVO() != null && !tfvVO.getDerechosDePasoVO().equals("")){
-                    cadenaCCP = cadenaCCP + addCadena(ddpVO.getTipoDerechoDePaso());
-                    cadenaCCP = cadenaCCP + addCadena(ddpVO.getKilometrajePagado().toString());
-                }
-                if(tfvVO.getCarroVO() != null && !tfvVO.getCarroVO().equals("")){
-                    cadenaCCP = cadenaCCP + addCadena(crVO.getTipoCarro());
-                    cadenaCCP = cadenaCCP + addCadena(crVO.getMatriculaCarro());
-                    cadenaCCP = cadenaCCP + addCadena(crVO.getGuiaCarro());
-                    cadenaCCP = cadenaCCP + addCadena(crVO.getToneladasNetasCarro().toString());
-                    if(crVO.getContenedorVO() != null && !crVO.getContenedorVO().equals("")){
-                        cadenaCCP = cadenaCCP + addCadena(ctVO.getTipoContenedor());
-                        cadenaCCP = cadenaCCP + addCadena(ctVO.getPesoContenedorVacio().toString());
-                        cadenaCCP = cadenaCCP + addCadena(ctVO.getPesoNetoMercancia().toString());
-                    }
-                }
-            }
-        //}
-        if(cpVO.getFiguraTransporteVO() != null && !cpVO.getFiguraTransporteVO().equals("")){
-            FiguraTransporteVO ftVO = null; 
-            if(ftVO.getTiposFiguraVO() != null && !ftVO.getTiposFiguraVO().equals("")){
-                cadenaCCP = cadenaCCP + addCadena(tfVO.getTipoFigura());
-                if(tfVO.getRfcFigura() != null && !tfVO.getRfcFigura().equals("")){
-                    cadenaCCP = cadenaCCP + addCadena(tfVO.getRfcFigura());
-                }
-                if(tfVO.getNumLicencia() != null && !tfVO.getNumLicencia().equals("")){
-                    cadenaCCP = cadenaCCP + addCadena(tfVO.getNumLicencia());
-                }
-                if(tfVO.getNombreFigura() != null && !tfVO.getNombreFigura().equals("")){
-                    cadenaCCP = cadenaCCP + addCadena(tfVO.getNombreFigura());
-                }
-                if(tfVO.getNumRegIdTribFigura() != null && !tfVO.getNumRegIdTribFigura().equals("")){
-                    cadenaCCP = cadenaCCP + addCadena(tfVO.getNumRegIdTribFigura());
-                }
-                if(tfVO.getResidenciaFiscalFigura() != null && !tfVO.getResidenciaFiscalFigura().equals("")){
-                    cadenaCCP = cadenaCCP + addCadena(tfVO.getResidenciaFiscalFigura());
-                }
-                if(tfVO.getPartesTransporteVO() != null && !tfVO.getPartesTransporteVO().equals("")){
-                    PartesTransporteVO ptsVO = null;
-                    if(ptsVO.getParteTransporteVO() != null && !ptsVO.getParteTransporteVO().equals("")){
-                        ArrayList<ParteTransporteVO> ptVO = complementoCartaPorteDao.consultaParteTransporte(fctClef);
-                        cadenaCCP = cadenaCCP + addCadena(ptVO.get(0).toString());
-                    }
-                }
-                if(tfVO.getDomicilioVO() != null && !tfVO.getDomicilioVO().equals("")){
-                    if(dmVO.getCalle() != null && !dmVO.getCalle().equals("")){
-                        cadenaCCP = cadenaCCP + addCadena(dmVO.getCalle());
-                    }
-                    if(dmVO.getNumeroExterior() != null && !dmVO.getNumeroExterior().equals("")){
-                        cadenaCCP = cadenaCCP + addCadena(dmVO.getNumeroExterior());
-                    }
-                    if(dmVO.getNumeroInterior() != null && !dmVO.getNumeroInterior().equals("")){
-                        cadenaCCP = cadenaCCP + addCadena(dmVO.getNumeroInterior());
-                    }
-                    if(dmVO.getColonia() != null && !dmVO.getColonia().equals("")){
-                        cadenaCCP = cadenaCCP + addCadena(dmVO.getColonia());
-                    }
-                    if(dmVO.getLocalidad() != null && !dmVO.getLocalidad().equals("")){
-                        cadenaCCP = cadenaCCP + addCadena(dmVO.getLocalidad());
-                    }
-                    if(dmVO.getReferencia() != null && !dmVO.getReferencia().equals("")){
-                        cadenaCCP = cadenaCCP + addCadena(dmVO.getReferencia());
-                    }
-                    if(dmVO.getMunicipio() != null && !dmVO.getMunicipio().equals("")){
-                        cadenaCCP = cadenaCCP + addCadena(dmVO.getMunicipio());
-                    }
-                    cadenaCCP = cadenaCCP + addCadena(dmVO.getEstado());
-                    cadenaCCP = cadenaCCP + addCadena(dmVO.getPais());
-                    cadenaCCP = cadenaCCP + addCadena(dmVO.getCodigoPostal());
-                }
-            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        
         System.out.println("Cadena " + cadenaCCP);
         return cadenaCCP;
     }
@@ -481,24 +437,26 @@ public class PruebaCadena {
     static public void prueba(){
         int fctClef = 1;
         ComplementoCartaPorteDao complementoCartaPorteDao = new ComplementoCartaPorteDao();
-        ArrayList<UbicacionVO> ubVO = complementoCartaPorteDao.consultaUbicacion(fctClef);
+        CartaPorteVO cartaPorteVO = complementoCartaPorteDao.consultaCartaPorte(fctClef);
         
         //System.out.println(ubVO.get(1).getDistanciaRecorrida());
-        for(int i=0; i<ubVO.size(); i++){
-            System.out.println(ubVO.get(i).getTipoUbicacion());
-            System.out.println(ubVO.get(i).getIdUbicacion());
-            if(ubVO.get(i).getRfcRemitenteDestinatario() != null && !ubVO.get(i).getRfcRemitenteDestinatario().equals("")){
-                System.out.println(ubVO.get(i).getRfcRemitenteDestinatario());
-            }
-            System.out.println(ubVO.get(i).getNombreRemitenteDestinatario());
-            System.out.println(ubVO.get(i).getNumRegIdTrib());
-            System.out.println(ubVO.get(i).getResidenciaFiscal());
-            System.out.println(ubVO.get(i).getNumEstacion());
-            System.out.println(ubVO.get(i).getNombreEstacion());
-            System.out.println(ubVO.get(i).getNavegacionTrafico());
-            System.out.println(ubVO.get(i).getFechaHoraSalidaLlegada());
-            System.out.println(ubVO.get(i).getTipoEstacion());
-            System.out.println(ubVO.get(i).getDistanciaRecorrida());
+        for(int i=0; i<cartaPorteVO.getUbicacionesVO().getUbicacionVO().size(); i++){
+            System.out.println(cartaPorteVO.getUbicacionesVO().getUbicacionVO().get(i).getTipoUbicacion());
+            System.out.println(cartaPorteVO.getUbicacionesVO().getUbicacionVO().get(i).getDomicilioVO().getEstado());
+//            System.out.println(ubVO.get(i).getIdUbicacion());
+//            if(ubVO.get(i).getRfcRemitenteDestinatario() != null && !ubVO.get(i).getRfcRemitenteDestinatario().equals("")){
+//                System.out.println(ubVO.get(i).getRfcRemitenteDestinatario());
+                  
+//            }
+//            System.out.println(ubVO.get(i).getNombreRemitenteDestinatario());
+//            System.out.println(ubVO.get(i).getNumRegIdTrib());
+//            System.out.println(ubVO.get(i).getResidenciaFiscal());
+//            System.out.println(ubVO.get(i).getNumEstacion());
+//            System.out.println(ubVO.get(i).getNombreEstacion());
+//            System.out.println(ubVO.get(i).getNavegacionTrafico());
+//            System.out.println(ubVO.get(i).getFechaHoraSalidaLlegada());
+//            System.out.println(ubVO.get(i).getTipoEstacion());
+//            System.out.println(ubVO.get(i).getDistanciaRecorrida());
         }
     }
     
